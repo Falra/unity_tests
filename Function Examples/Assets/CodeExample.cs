@@ -36,4 +36,12 @@ public class CodeExample : MonoBehaviour
         Renderer r = obj.GetComponent<Renderer>();
         r.material.color = color;
     }
+
+    int Add(params int[] values){
+        int sum = 0;
+        foreach(int value in values){
+            sum += value;
+        }
+        return sum;
+    }
 }
