@@ -6,9 +6,10 @@ public class Boid : MonoBehaviour
 {
     [Header("Set Dynamically")]
     public Rigidbody rigid;
-
+    private Neighborhood neighborhood;
     private void Awake()
     {
+        neighborhood = GetComponent<Neighborhood>();
         rigid = GetComponent<Rigidbody>();
         pos = Random.insideUnitSphere * Spawner.S.spawnRadius;
         Vector3 vel = Random.onUnitSphere * Spawner.S.velocity;
@@ -46,19 +47,64 @@ public class Boid : MonoBehaviour
         Vector3 vel = rigid.velocity;
         Spawner spn = Spawner.S;
 
+        // Avoid closest
+        Vector3 velAvoid = Vector3.zero;
+        Vector3 tooClosePos = neighborhood.avgClosePos;
+        if (tooClosePos != Vector3.zero)
+        {
+            velAvoid = pos - tooClosePos;
+            velAvoid.Normalize();
+            velAvoid *= spn.velocity;
+        }
+
+        // avg velocity
+        Vector3 velAllign = neighborhood.avgVel;
+        if (velAllign != Vector3.zero)
+        {
+            velAllign.Normalize();
+            velAllign *= spn.velocity;
+        }
+
+        // avg center
+        Vector3 velCenter = neighborhood.avgPos;
+        if (velCenter != Vector3.zero)
+        {
+            velCenter -= transform.position;
+            velCenter.Normalize();
+            velCenter *= spn.velocity;
+        }
+
         Vector3 delta = Attractor.POS - pos;
         bool attracted = (delta.magnitude > spn.attractPushDist);
         Vector3 velAttract = delta.normalized * spn.velocity;
 
         float ftd = Time.fixedDeltaTime;
 
-        if (attracted)
+        if (velAvoid != Vector3.zero)
         {
-            vel = Vector3.Lerp(vel, velAttract, spn.attractPull * ftd);
+            vel = Vector3.Lerp(vel, velAvoid, spn.collAvoid * ftd);
         }
         else
         {
-            vel = Vector3.Lerp(vel, -velAttract, spn.attractPush * ftd);
+            if (velAllign != Vector3.zero)
+            {
+                vel = Vector3.Lerp(vel, velAllign, spn.velMatching * ftd);
+            }
+            if (velCenter != Vector3.zero)
+            {
+                vel = Vector3.Lerp(vel, velAllign, spn.flockCentering * ftd);
+            }
+            if (velAttract != Vector3.zero)
+            {
+                if (attracted)
+                {
+                    vel = Vector3.Lerp(vel, velAttract, spn.attractPull * ftd);
+                }
+                else
+                {
+                    vel = Vector3.Lerp(vel, -velAttract, spn.attractPush * ftd);
+                }
+            }
         }
 
         vel = vel.normalized * spn.velocity;
