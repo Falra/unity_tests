@@ -41,5 +41,29 @@ public class Boid : MonoBehaviour
         get { return transform.position; }
         set { transform.position = value; }
     }
-}
+    private void FixedUpdate()
+    {
+        Vector3 vel = rigid.velocity;
+        Spawner spn = Spawner.S;
 
+        Vector3 delta = Attractor.POS - pos;
+        bool attracted = (delta.magnitude > spn.attractPushDist);
+        Vector3 velAttract = delta.normalized * spn.velocity;
+
+        float ftd = Time.fixedDeltaTime;
+
+        if (attracted)
+        {
+            vel = Vector3.Lerp(vel, velAttract, spn.attractPull * ftd);
+        }
+        else
+        {
+            vel = Vector3.Lerp(vel, -velAttract, spn.attractPush * ftd);
+        }
+
+        vel = vel.normalized * spn.velocity;
+        rigid.velocity = vel;
+
+        LookAhead();
+    }
+}
