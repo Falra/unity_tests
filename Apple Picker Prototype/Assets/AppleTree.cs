@@ -30,6 +30,10 @@ public class AppleTree : MonoBehaviour
         position.x += speed * Time.deltaTime;
         transform.position = position;
         // изменение направления
-                
+        if (position.x < -leftAndRightEdge) {
+            speed = Mathf.Abs(speed);
+        } else if (position.x > leftAndRightEdge) {
+            speed = - Mathf.Abs(speed);
+        }       
     }
 }
