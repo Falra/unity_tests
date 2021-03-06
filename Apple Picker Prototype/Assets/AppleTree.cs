@@ -5,7 +5,7 @@ using UnityEngine;
 public class AppleTree : MonoBehaviour
 {
     [Header("Set in Inspector")]
-    // шаблон дерева
+    // шаблон яблока
     public GameObject applePrefab;
     // скорость перемещения
     public float speed = 1f;
@@ -19,7 +19,7 @@ public class AppleTree : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Invoke("DropApple", 2f);
     }
 
     // Update is called once per frame
@@ -42,5 +42,11 @@ public class AppleTree : MonoBehaviour
         if (Random.value < chanceToChangeDirection) {
             speed *= -1;
         }       
+    }
+
+    void DropApple() {
+        GameObject apple = Instantiate<GameObject> (applePrefab);
+        apple.transform.position = transform.position;
+        Invoke("DropApple", secondsBetweenAppleDrops);
     }
 }
