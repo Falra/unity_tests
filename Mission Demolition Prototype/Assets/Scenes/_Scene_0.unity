@@ -326,58 +326,6 @@ MonoBehaviour:
   launchPosition: {x: 0, y: 0, z: 0}
   projectile: {fileID: 0}
   aimingMode: 0
---- !u!1 &455264065
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 455264067}
-  - component: {fileID: 455264066}
-  m_Layer: 0
-  m_Name: Cloud
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &455264066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455264065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c8f9b92084caa74d964fa9338909deb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cloudSphere: {fileID: 8456063067827241814, guid: 964f712b1bcd45149bcbb9996ff9fd9a,
-    type: 3}
-  numSpheresMin: 6
-  numSpheresMax: 10
-  sphereOffsetScale: {x: 5, y: 2, z: 1}
-  sphereScaleRangeX: {x: 4, y: 8}
-  sphereScaleRangeY: {x: 3, y: 4}
-  sphereScaleRangeZ: {x: 2, y: 4}
-  scaleYMin: 2
---- !u!4 &455264067
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455264065}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +338,7 @@ GameObject:
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
+  - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -476,6 +425,26 @@ MonoBehaviour:
   easing: 0.05
   minXY: {x: 0, y: 0}
   camZ: 0
+--- !u!114 &534669907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fd9dfb3149e7a42a42ba3d7b8afd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numClouds: 40
+  cloudPrefab: {fileID: 8344714218746789354, guid: c16aaf9f686f8a641973001e39035613,
+    type: 3}
+  cloudPosMin: {x: -50, y: -5, z: 10}
+  cloudPosMax: {x: 150, y: 100, z: 10}
+  cloudScaleMin: 1
+  cloudScaleMax: 3
+  cloudSpeedMultiplier: 0.5
 --- !u!1 &754355451
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +488,36 @@ Halo:
     serializedVersion: 2
     rgba: 4290756543
   m_Size: 3
+--- !u!1 &853828970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 853828971}
+  m_Layer: 0
+  m_Name: CloudAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &853828971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853828970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1358015592
 GameObject:
   m_ObjectHideFlags: 0
