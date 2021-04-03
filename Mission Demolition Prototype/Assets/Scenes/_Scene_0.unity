@@ -366,7 +366,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 423264971}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 534669908}
+        m_MethodName: SwitchView
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &423264971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,6 +613,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76261c77c2aa6d4ea3064c2cf39debf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uitLevel: {fileID: 1028377561}
+  uitShots: {fileID: 1325066929}
+  uitButton: {fileID: 1013216043}
+  castlePosition: {x: 50, y: -9.5, z: 0}
+  castles:
+  - {fileID: 9161982452341583787, guid: ca79c084bd4070644b1089bc0653a4dc, type: 3}
+  - {fileID: 9161982452341583787, guid: ca7e7df078335e0489a07101da6f2e48, type: 3}
+  - {fileID: 9161982452341583787, guid: 732ef7100673e4d47ad4e9215c9ad58f, type: 3}
+  level: 0
+  levelMax: 0
+  shotsTaken: 0
+  castle: {fileID: 0}
+  mode: 0
+  showing: Show Slingshot
 --- !u!1 &624494187
 GameObject:
   m_ObjectHideFlags: 0
